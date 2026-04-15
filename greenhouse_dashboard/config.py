@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 APP_TITLE = "Greenhouse Decision Support"
-DATA_FILE = Path(__file__).resolve().parent / "greenhouse_systems_cleaned.csv"
+DATA_FILE = Path("greenhouse_systems_cleaned.csv")
 
 TRUE_VALUES = {"true", "yes", "y", "1"}
 SYSTEM_DISPLAY_NAMES = {
