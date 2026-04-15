@@ -45,8 +45,58 @@ def build_analysis_bundle(
     filters,
     comparison_context,
 ):
-    recommendations = build_recommendations(
+    # 1️⃣ decision mode (used everywhere)
+    decision_mode = filters["decision_mode"]
 
+    # 2️⃣ summary MUST be created first
+    summary = build_system_summary(
+        filtered_df,
+        cost_model,
+        outcome_context,
+        decision_mode=decision_mode,
+        comparison_context=comparison_context,
+    )
+
+    # 3️⃣ dependent objects
+    monthly_trends = build_monthly_trends(
+        filtered_df, cost_model, outcome_context
+    )
+
+    opportunities = build_optimization_opportunities(
+        summary, cost_model, outcome_context
+    )
+
+    confidence_summary = build_confidence_summary(
+        filtered_df, summary, comparison_context
+    )
+
+    explainability = build_score_explanations(
+        summary,
+        outcome_context,
+        decision_mode,
+        confidence_summary,
+    )
+
+    limitations = build_limitations_notes(
+        summary,
+        outcome_context,
+        comparison_context,
+        confidence_summary,
+    )
+
+    winner_map = build_winner_map(summary, outcome_context)
+
+    insights = build_executive_summary(
+        summary,
+        winner_map,
+        opportunities,
+        outcome_context,
+        confidence_summary,
+        comparison_context,
+        decision_mode,
+    )
+
+    recommendations = build_recommendations(
         summary,
         opportunities,
         outcome_context,
@@ -55,6 +105,7 @@ def build_analysis_bundle(
         comparison_context,
         explainability,
     )
+
     return {
         "summary": summary,
         "monthly_trends": monthly_trends,
@@ -72,6 +123,7 @@ def build_analysis_bundle(
         "issue_patterns": build_issue_pattern_summary(filtered_df),
         "rank_tables": build_rank_tables(summary),
     }
+    
 def main() -> None:
     inject_styles()
     if not DATA_FILE.exists():
