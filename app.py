@@ -1,4 +1,6 @@
-    recommendations = build_recommendations(
+def build_analysis_bundle(filtered_df, cost_model, outcome_context, filters, comparison_context):
+
+recommendations = build_recommendations(
         summary,
         opportunities,
         outcome_context,
