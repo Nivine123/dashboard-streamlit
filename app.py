@@ -1,6 +1,44 @@
 
 import streamlit as st
 
+from greenhouse_dashboard.config import APP_TITLE, DATA_FILE
+from greenhouse_dashboard.data import (
+    load_data,
+    apply_filters,
+    apply_comparison_basis,
+    comparison_window,
+)
+from greenhouse_dashboard.analytics import (
+    build_alert_feed,
+    build_confidence_summary,
+    build_cost_composition,
+    build_executive_summary,
+    build_issue_pattern_summary,
+    build_leak_severity_distribution,
+    build_limitations_notes,
+    build_monthly_trends,
+    build_optimization_opportunities,
+    build_rank_tables,
+    build_recommendations,
+    build_score_breakdown,
+    build_score_explanations,
+    build_system_summary,
+    build_winner_map,
+    detect_outcome_context,
+)
+from greenhouse_dashboard.ui import (
+    inject_styles,                 
+    render_controls,
+    render_cost_page,
+    render_dashboard_page,
+    render_methodology_page,
+    render_navigation,
+    render_problem_page,
+    render_scenario_page,
+    render_system_comparison_page,
+)
+``
+
 def build_analysis_bundle(
     filtered_df,
     cost_model,
