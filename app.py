@@ -8,8 +8,8 @@ def build_analysis_bundle(
     filters,
     comparison_context,
 ):
+    recommendations = build_recommendations(
 
-recommendations = build_recommendations(
         summary,
         opportunities,
         outcome_context,
