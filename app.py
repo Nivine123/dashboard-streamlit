@@ -37,7 +37,6 @@ from greenhouse_dashboard.ui import (
     render_scenario_page,
     render_system_comparison_page,
 )
-``
 
 def build_analysis_bundle(
     filtered_df,
