@@ -1,4 +1,13 @@
-def build_analysis_bundle(filtered_df, cost_model, outcome_context, filters, comparison_context):
+
+import streamlit as st
+
+def build_analysis_bundle(
+    filtered_df,
+    cost_model,
+    outcome_context,
+    filters,
+    comparison_context,
+):
 
 recommendations = build_recommendations(
         summary,
